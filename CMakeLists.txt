@@ -7,7 +7,7 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 set (PACKAGE_DIRECTORY ${PROJECT_BINARY_DIR}/package)
 
-find_package (HIDAPI REQUIRED)
+find_package (hidapi REQUIRED)
 
 set (SOURCES
     main.c
@@ -23,4 +23,4 @@ endif ()
 
 add_executable (${PROJECT_NAME} ${SOURCES})
 include_directories(${HIDAPI_INCLUDE_DIRS})
-target_link_libraries (${PROJECT_NAME} ${HIDAPI_LIBRARIES} ${PLATFORM_LIBS})
+target_link_libraries (${PROJECT_NAME} PRIVATE hidapi::hidapi ${PLATFORM_LIBS})
